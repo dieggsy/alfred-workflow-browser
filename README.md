@@ -1,6 +1,13 @@
 # WorkflowFileBrowser
 An Alfred workflow to browse workflow files
 ## Usage:
+### Workflow
+
+    wf/     -access filtered workflows (see script usage)
+    awf/    -access all workflows
+    
+Workflows can be searched by name, with regex search supported.
+
 ### Script
 Usage:
 
