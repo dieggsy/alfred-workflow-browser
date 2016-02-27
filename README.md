@@ -6,6 +6,11 @@ An Alfred workflow to browse workflow files
     wf/     -access filtered workflows (see script usage)
     awf/    -access all workflows
     
+    enter   -Browse in Alfred
+    ⌘-enter -Open in Finder
+    ⌥-enter -Browse data directory in Alfred
+    ⌃-enter -Browse cache directory in Alfred
+
 Workflows can be searched by name, with regex search supported.
 
 ### Script
