@@ -2,7 +2,7 @@
 An Alfred workflow to browse workflow files
 ## Usage:
 
-## Script
+### Script
 Usage:
 
     workflowsearch.py <query> [-c|-b|-r|-a|-w] [<keyword>]
