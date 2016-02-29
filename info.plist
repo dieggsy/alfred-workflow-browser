@@ -30,7 +30,7 @@
 				<key>destinationuid</key>
 				<string>9B181D5B-0FCA-4F0D-B4A1-C84031E6A4D8</string>
 				<key>modifiers</key>
-				<integer>131072</integer>
+				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string>Browse data directory</string>
 			</dict>
@@ -38,7 +38,7 @@
 				<key>destinationuid</key>
 				<string>F7175F0E-BC30-4570-8280-9FE503FB85C8</string>
 				<key>modifiers</key>
-				<integer>524288</integer>
+				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string>Browse cache directory</string>
 			</dict>
@@ -57,7 +57,7 @@
 				<key>destinationuid</key>
 				<string>641A62CF-184A-4258-B697-EE0E64F055F9</string>
 				<key>modifiers</key>
-				<integer>131072</integer>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string>Open workflow directory</string>
 			</dict>
@@ -65,7 +65,7 @@
 				<key>destinationuid</key>
 				<string>9B181D5B-0FCA-4F0D-B4A1-C84031E6A4D8</string>
 				<key>modifiers</key>
-				<integer>1048576</integer>
+				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string>Browse data directory</string>
 			</dict>
@@ -73,7 +73,7 @@
 				<key>destinationuid</key>
 				<string>F7175F0E-BC30-4570-8280-9FE503FB85C8</string>
 				<key>modifiers</key>
-				<integer>524288</integer>
+				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string>Browse cache directory</string>
 			</dict>
@@ -86,7 +86,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Workflow Files</string>
+	<string>Workflow File Browser</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -134,16 +134,6 @@
 		</dict>
 		<dict>
 			<key>config</key>
-			<dict/>
-			<key>type</key>
-			<string>alfred.workflow.action.openfile</string>
-			<key>uid</key>
-			<string>641A62CF-184A-4258-B697-EE0E64F055F9</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
 				<integer>1</integer>
@@ -174,6 +164,16 @@
 			<string>F8DD35A6-32EA-4DAC-B3F9-DEE636243CDE</string>
 			<key>version</key>
 			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict/>
+			<key>type</key>
+			<string>alfred.workflow.action.openfile</string>
+			<key>uid</key>
+			<string>641A62CF-184A-4258-B697-EE0E64F055F9</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -230,7 +230,7 @@ osascript -e "tell application \"Alfred 2\" to search \"$goto\""
 		<key>9B181D5B-0FCA-4F0D-B4A1-C84031E6A4D8</key>
 		<dict>
 			<key>ypos</key>
-			<real>230</real>
+			<real>240</real>
 		</dict>
 		<key>D9E73BE1-CB6C-40AB-955E-E5BE0A1421D9</key>
 		<dict>
@@ -250,10 +250,10 @@ osascript -e "tell application \"Alfred 2\" to search \"$goto\""
 		<key>F8DD35A6-32EA-4DAC-B3F9-DEE636243CDE</key>
 		<dict>
 			<key>ypos</key>
-			<real>130</real>
+			<real>120</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>https://github.com/therockmandolinist</string>
+	<string>https://github.com/therockmandolinist/</string>
 </dict>
 </plist>
