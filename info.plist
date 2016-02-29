@@ -254,6 +254,6 @@ osascript -e "tell application \"Alfred 2\" to search \"$goto\""
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>https://github.com/therockmandolinist/</string>
+	<string>https://github.com/therockmandolinist/WorkflowFileBrowser</string>
 </dict>
 </plist>
