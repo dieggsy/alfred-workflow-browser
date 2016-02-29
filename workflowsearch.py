@@ -50,9 +50,7 @@ def wfFilter(filename):
     return name,show
 
 def workflow_subdirectories():
-    a_dir=(os.path.dirname(os.path.dirname(os.path.abspath('info.plist'))))#'/Users/'+getpass.getuser()+
-           #'/Library/Application Support/Alfred 2/'
-           #'Alfred.alfredpreferences/workflows/')
+    a_dir=os.path.dirname(os.path.dirname(os.path.abspath('info.plist')))
     my_workflows=[]
     for folder in os.listdir(a_dir):
         folderpath=os.path.join(a_dir,folder)
