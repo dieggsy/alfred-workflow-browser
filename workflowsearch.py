@@ -64,11 +64,11 @@ def workflow_subdirectories():
 def main(wf):
     args=docopt(__doc__)
     query=args.get('<query>')
-    quer=re.compile('.*'+query+'.*',re.IGNORECASE)
+    quer=re.compile(query,re.IGNORECASE)
     my_workflows=workflow_subdirectories()
     my_workflows.sort(key=lambda tup: tup[0].lower())
     for i in my_workflows:
-        if quer.match(i[0]):
+        if quer.search(i[0]):
             wf.add_item(i[0],
                         'Browse workflow directory',
                         arg=i[1],
