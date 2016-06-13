@@ -1,7 +1,7 @@
 '''workflowsearch.py (path) [options]
 
 Usage:
-    workflowsearch.py <query> [-c|-b|-r|-a|-w] [<keyword>]
+    workflowsearch.py <query> (-c|-b|-r|-a|-w) [<keyword>]
 
 Options:
     -c    Filter by category
