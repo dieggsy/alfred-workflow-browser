@@ -6,8 +6,8 @@ An Alfred workflow to browse workflow files
     wf       -access filtered workflows (see script usage)
     awf      -access all workflows
     
-    enter    -Browse in Alfred
-    ⌘-enter  -Open in Finder
+    enter    -cd into workflow directory in Terminal
+    ⌘-enter  -Browse workflow directory in Alfred
     ⌥-enter  -Browse data directory in Alfred
     ⌃-enter  -Browse cache directory in Alfred
 
