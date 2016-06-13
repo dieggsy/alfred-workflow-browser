@@ -12,7 +12,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>D9E73BE1-CB6C-40AB-955E-E5BE0A1421D9</string>
+				<string>F05CE51E-CFDF-4927-B2CD-9DBF5C8D79D1</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -22,11 +22,11 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>641A62CF-184A-4258-B697-EE0E64F055F9</string>
+				<string>D9E73BE1-CB6C-40AB-955E-E5BE0A1421D9</string>
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Open workflow directory</string>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -57,7 +57,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>D9E73BE1-CB6C-40AB-955E-E5BE0A1421D9</string>
+				<string>F05CE51E-CFDF-4927-B2CD-9DBF5C8D79D1</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -67,11 +67,11 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>641A62CF-184A-4258-B697-EE0E64F055F9</string>
+				<string>D9E73BE1-CB6C-40AB-955E-E5BE0A1421D9</string>
 				<key>modifiers</key>
 				<integer>1048576</integer>
 				<key>modifiersubtext</key>
-				<string>Open workflow directory</string>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -107,34 +107,6 @@
 	<string>Workflow File Browser</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string>cd "{query}"</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.terminalcommand</string>
-			<key>uid</key>
-			<string>F05CE51E-CFDF-4927-B2CD-9DBF5C8D79D1</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>path</key>
-				<string></string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.browseinalfred</string>
-			<key>uid</key>
-			<string>D9E73BE1-CB6C-40AB-955E-E5BE0A1421D9</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -181,17 +153,31 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>openwith</key>
-				<string></string>
-				<key>sourcefile</key>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>cd "{query}"
+clear &amp;&amp; ./wfname</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.terminalcommand</string>
+			<key>uid</key>
+			<string>F05CE51E-CFDF-4927-B2CD-9DBF5C8D79D1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>path</key>
 				<string></string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.openfile</string>
+			<string>alfred.workflow.action.browseinalfred</string>
 			<key>uid</key>
-			<string>641A62CF-184A-4258-B697-EE0E64F055F9</string>
+			<string>D9E73BE1-CB6C-40AB-955E-E5BE0A1421D9</string>
 			<key>version</key>
-			<integer>3</integer>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -263,6 +249,21 @@ osascript -e "tell application \"Alfred 3\" to search \"$goto\""</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>openwith</key>
+				<string></string>
+				<key>sourcefile</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openfile</string>
+			<key>uid</key>
+			<string>641A62CF-184A-4258-B697-EE0E64F055F9</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -294,61 +295,63 @@ osascript -e "tell application \"Alfred 3\" to search \"$goto\""</string>
 			<key>note</key>
 			<string>Reveal workflow directory in Finder.</string>
 			<key>xpos</key>
-			<integer>490</integer>
+			<integer>120</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>450</integer>
 		</dict>
 		<key>9B181D5B-0FCA-4F0D-B4A1-C84031E6A4D8</key>
 		<dict>
 			<key>note</key>
 			<string>Browse workflow data folder in Alfred.</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>750</integer>
 			<key>ypos</key>
-			<integer>340</integer>
+			<integer>410</integer>
 		</dict>
 		<key>D9E73BE1-CB6C-40AB-955E-E5BE0A1421D9</key>
 		<dict>
 			<key>note</key>
 			<string>Browse workflow directory in Alfred.</string>
 			<key>xpos</key>
-			<integer>490</integer>
+			<integer>710</integer>
 			<key>ypos</key>
-			<integer>40</integer>
+			<integer>220</integer>
 		</dict>
 		<key>DFFE9981-AF30-4B14-B118-44C21F1F68B2</key>
 		<dict>
 			<key>note</key>
 			<string>Filter workflows</string>
 			<key>xpos</key>
-			<integer>80</integer>
+			<integer>90</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>10</integer>
 		</dict>
 		<key>F05CE51E-CFDF-4927-B2CD-9DBF5C8D79D1</key>
 		<dict>
+			<key>note</key>
+			<string>Open directory in Terminal.</string>
 			<key>xpos</key>
-			<integer>740</integer>
+			<integer>750</integer>
 			<key>ypos</key>
-			<integer>30</integer>
+			<integer>10</integer>
 		</dict>
 		<key>F7175F0E-BC30-4570-8280-9FE503FB85C8</key>
 		<dict>
 			<key>note</key>
 			<string>Browse workflow cache in Alfred.</string>
 			<key>xpos</key>
-			<integer>500</integer>
+			<integer>740</integer>
 			<key>ypos</key>
-			<integer>510</integer>
+			<integer>590</integer>
 		</dict>
 		<key>F8DD35A6-32EA-4DAC-B3F9-DEE636243CDE</key>
 		<dict>
 			<key>note</key>
 			<string>Show all workflows</string>
 			<key>xpos</key>
-			<integer>80</integer>
+			<integer>90</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>230</integer>
 		</dict>
 	</dict>
 	<key>version</key>
