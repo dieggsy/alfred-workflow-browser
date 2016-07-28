@@ -5,9 +5,10 @@ An Alfred workflow to browse workflow files
 
     wf       -access filtered workflows (see script usage)
     awf      -access all workflows
-    
+
     enter    -cd into workflow directory in Terminal
-    ⌘-enter  -Browse workflow directory in Alfred
+    ⌘-enter  -Open workflow directory in Finder
+	⇧-enter  -Browse workflow directory in Alfred
     ⌥-enter  -Browse data directory in Alfred
     ⌃-enter  -Browse cache directory in Alfred
 
@@ -17,7 +18,7 @@ Workflows can be searched by name, with regex search supported.
 Usage:
 
     workflowsearch.py <query> (-c|-b|-r|-a|-w) [<keyword>]
-    
+
 Options:
 
     -c    Filter by category

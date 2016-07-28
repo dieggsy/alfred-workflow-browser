@@ -11,7 +11,7 @@ Options:
     -w    Show all
 '''
 from xml.sax.saxutils import unescape
-from workflow import Workflow
+from workflow import Workflow3
 from docopt import docopt
 import os
 import sys
@@ -23,7 +23,7 @@ def wfFilter(filename):
     plist = plistlib.readPlist(filename)
     name = plist['name']
     disabled = plist['disabled']
-    
+
     if args.get('-r'):
         field='readme'   #'>readme<'
     elif args.get('-a'):
@@ -55,7 +55,7 @@ def workflow_subdirectories():
         if show:
             my_workflows.append((name,folderpath))
     return my_workflows
-    
+
 
 def main(wf):
     args=docopt(__doc__)
@@ -63,16 +63,17 @@ def main(wf):
     quer=re.compile(query,re.IGNORECASE)
     my_workflows=workflow_subdirectories()
     my_workflows.sort(key=lambda tup: tup[0].lower())
-    
+
     for i in my_workflows:
         if quer.search(i[0]):
             wf.add_item(i[0],
-                        'Browse workflow directory',
+                        'Go to workflow directory in Terminal',
                         arg=i[1],
-                        valid=True,    
+                        valid=True,
                         icon=i[1]+'/icon.png')
+
     wf.send_feedback()
-    
+
 if __name__==u"__main__":
-    wf=Workflow()
+    wf=Workflow3()
     sys.exit(wf.run(main))

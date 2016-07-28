@@ -877,7 +877,6 @@ def atomic_writer(file_path, mode):
     succeeds. The data is first written to a temporary file.
 
     """
-
     temp_suffix = '.aw.temp'
     temp_file_path = file_path + temp_suffix
     with open(temp_file_path, mode) as file_obj:
@@ -989,6 +988,7 @@ class Settings(dict):
         self._original = deepcopy(d)
         self._nosave = False
 
+    @uninterruptible
     def save(self):
         """Save settings to JSON file specified in ``self._filepath``
 
@@ -1032,34 +1032,37 @@ class Settings(dict):
 class Workflow(object):
     """Create new :class:`Workflow` instance.
 
-        :param default_settings: default workflow settings. If no settings file
-            exists, :class:`Workflow.settings` will be pre-populated with
-            ``default_settings``.
-        :type default_settings: :class:`dict`
-        :param update_settings: settings for updating your workflow from GitHub.
-            This must be a :class:`dict` that contains ``github_slug`` and
-            ``version`` keys. ``github_slug`` is of the form ``username/repo``
-            and ``version`` **must** correspond to the tag of a release.
-            See :ref:`updates` for more information.
-        :type update_settings: :class:`dict`
-        :param input_encoding: encoding of command line arguments
-        :type input_encoding: :class:`unicode`
-        :param normalization: normalisation to apply to CLI args.
-            See :meth:`Workflow.decode` for more details.
-        :type normalization: :class:`unicode`
-        :param capture_args: capture and act on ``workflow:*`` arguments. See
-            :ref:`Magic arguments <magic-arguments>` for details.
-        :type capture_args: :class:`Boolean`
-        :param libraries: sequence of paths to directories containing
-            libraries. These paths will be prepended to ``sys.path``.
-        :type libraries: :class:`tuple` or :class:`list`
-        :param help_url: URL to webpage where a user can ask for help with
-            the workflow, report bugs, etc. This could be the GitHub repo
-            or a page on AlfredForum.com. If your workflow throws an error,
-            this URL will be displayed in the log and Alfred's debugger. It can
-            also be opened directly in a web browser with the ``workflow:help``
-            :ref:`magic argument <magic-arguments>`.
-        :type help_url: :class:`unicode` or :class:`str`
+    :param default_settings: default workflow settings. If no settings file
+        exists, :class:`Workflow.settings` will be pre-populated with
+        ``default_settings``.
+    :type default_settings: :class:`dict`
+    :param update_settings: settings for updating your workflow from GitHub.
+        This must be a :class:`dict` that contains ``github_slug`` and
+        ``version`` keys. ``github_slug`` is of the form ``username/repo``
+        and ``version`` **must** correspond to the tag of a release. The
+        boolean ``prereleases`` key is optional and if ``True`` will
+        override the :ref:`magic argument <magic-arguments>` preference.
+        This is only recommended when the installed workflow is a pre-release.
+        See :ref:`updates` for more information.
+    :type update_settings: :class:`dict`
+    :param input_encoding: encoding of command line arguments
+    :type input_encoding: :class:`unicode`
+    :param normalization: normalisation to apply to CLI args.
+        See :meth:`Workflow.decode` for more details.
+    :type normalization: :class:`unicode`
+    :param capture_args: capture and act on ``workflow:*`` arguments. See
+        :ref:`Magic arguments <magic-arguments>` for details.
+    :type capture_args: :class:`Boolean`
+    :param libraries: sequence of paths to directories containing
+        libraries. These paths will be prepended to ``sys.path``.
+    :type libraries: :class:`tuple` or :class:`list`
+    :param help_url: URL to webpage where a user can ask for help with
+        the workflow, report bugs, etc. This could be the GitHub repo
+        or a page on AlfredForum.com. If your workflow throws an error,
+        this URL will be displayed in the log and Alfred's debugger. It can
+        also be opened directly in a web browser with the ``workflow:help``
+        :ref:`magic argument <magic-arguments>`.
+    :type help_url: :class:`unicode` or :class:`str`
 
     """
 
@@ -1123,6 +1126,11 @@ class Workflow(object):
     ####################################################################
 
     # info.plist contents and alfred_* environment variables  ----------
+
+    @property
+    def alfred_version(self):
+        from update import Version
+        return Version(self.alfred_env.get('version'))
 
     @property
     def alfred_env(self):
@@ -1476,7 +1484,6 @@ class Workflow(object):
         :returns: an initialised :class:`~logging.Logger`
 
         """
-
         if self._logger:
             return self._logger
 
@@ -1484,22 +1491,21 @@ class Workflow(object):
         logger = logging.getLogger('workflow')
 
         if not len(logger.handlers):  # Only add one set of handlers
-            logfile = logging.handlers.RotatingFileHandler(
-                self.logfile,
-                maxBytes=1024*1024,
-                backupCount=1)
-
-            console = logging.StreamHandler()
 
             fmt = logging.Formatter(
                 '%(asctime)s %(filename)s:%(lineno)s'
                 ' %(levelname)-8s %(message)s',
                 datefmt='%H:%M:%S')
 
+            logfile = logging.handlers.RotatingFileHandler(
+                self.logfile,
+                maxBytes=1024*1024,
+                backupCount=1)
             logfile.setFormatter(fmt)
-            console.setFormatter(fmt)
-
             logger.addHandler(logfile)
+
+            console = logging.StreamHandler()
+            console.setFormatter(fmt)
             logger.addHandler(console)
 
         logger.setLevel(logging.DEBUG)
@@ -1515,7 +1521,6 @@ class Workflow(object):
         :type logger: `~logging.Logger` instance
 
         """
-
         self._logger = logger
 
     @property
@@ -2146,8 +2151,10 @@ class Workflow(object):
         # Call workflow's entry function/method within a try-except block
         # to catch any errors and display an error message in Alfred
         try:
+
             if self.version:
-                self.logger.debug('Workflow version : {0}'.format(self.version))
+                self.logger.debug(
+                    'Workflow version : {0}'.format(self.version))
 
             # Run update check if configured for self-updates.
             # This call has to go in the `run` try-except block, as it will
@@ -2169,6 +2176,7 @@ class Workflow(object):
             if self.help_url:
                 self.logger.info(
                     'For assistance, see: {0}'.format(self.help_url))
+
             if not sys.stdout.isatty():  # Show error in Alfred
                 self._items = []
                 if self._name:
@@ -2181,9 +2189,11 @@ class Workflow(object):
                               icon=ICON_ERROR)
                 self.send_feedback()
             return 1
+
         finally:
             self.logger.debug('Workflow finished in {0:0.3f} seconds.'.format(
-                              time.time() - start))
+                time.time() - start))
+
         return 0
 
     # Alfred feedback methods ------------------------------------------
@@ -2363,6 +2373,23 @@ class Workflow(object):
 
         return update_data['available']
 
+    @property
+    def prereleases(self):
+        """Should the workflow update to a newer pre-release version if
+        available?
+
+        .. versionadded:: 1.16
+
+        :returns: ``True`` if pre-releases are enabled with the :ref:`magic
+        argument <magic-arguments>` or the ``update_settings`` dict, else
+        ``False``
+
+        """
+        if self._update_settings.get('prereleases'):
+            return True
+
+        return self.settings.get('__workflow_prereleases') or False
+
     def check_update(self, force=False):
         """Call update script if it's time to check for a new release
 
@@ -2403,6 +2430,9 @@ class Workflow(object):
             cmd = ['/usr/bin/python', update_script, 'check', github_slug,
                    version]
 
+            if self.prereleases:
+                cmd.append('--prereleases')
+
             self.logger.info('Checking for update ...')
 
             run_in_background('__workflow_update_check', cmd)
@@ -2429,7 +2459,7 @@ class Workflow(object):
         # version = self._update_settings['version']
         version = str(self.version)
 
-        if not update.check_update(github_slug, version):
+        if not update.check_update(github_slug, version, self.prereleases):
             return False
 
         from background import run_in_background
@@ -2440,6 +2470,9 @@ class Workflow(object):
 
         cmd = ['/usr/bin/python', update_script, 'install', github_slug,
                version]
+
+        if self.prereleases:
+            cmd.append('--prereleases')
 
         self.logger.debug('Downloading update ...')
         run_in_background('__workflow_update_install', cmd)
@@ -2611,6 +2644,14 @@ class Workflow(object):
             self.settings['__workflow_autoupdate'] = False
             return 'Auto update turned off'
 
+        def prereleases_on():
+            self.settings['__workflow_prereleases'] = True
+            return 'Prerelease updates turned on'
+
+        def prereleases_off():
+            self.settings['__workflow_prereleases'] = False
+            return 'Prerelease updates turned off'
+
         def do_update():
             if self.start_update():
                 return 'Downloading and installing update ...'
@@ -2619,6 +2660,8 @@ class Workflow(object):
 
         self.magic_arguments['autoupdate'] = update_on
         self.magic_arguments['noautoupdate'] = update_off
+        self.magic_arguments['prereleases'] = prereleases_on
+        self.magic_arguments['noprereleases'] = prereleases_off
         self.magic_arguments['update'] = do_update
 
         # Help
@@ -2877,13 +2920,13 @@ class Workflow(object):
         cmd = ['security', action, '-s', service, '-a', account] + list(args)
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                              stderr=subprocess.STDOUT)
-        retcode, output = p.wait(), p.stdout.read().strip().decode('utf-8')
-        if retcode == 44:  # password does not exist
+        stdout, _ = p.communicate()
+        if p.returncode == 44:  # password does not exist
             raise PasswordNotFound()
-        elif retcode == 45:  # password already exists
+        elif p.returncode == 45:  # password already exists
             raise PasswordExists()
-        elif retcode > 0:
-            err = KeychainError('Unknown Keychain error : %s' % output)
-            err.retcode = retcode
+        elif p.returncode > 0:
+            err = KeychainError('Unknown Keychain error : %s' % stdout)
+            err.retcode = p.returncode
             raise err
-        return output
+        return stdout.strip().decode('utf-8')
