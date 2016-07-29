@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.therockmandolinist.workflowfiles</string>
+	<string>com.therockmandolinist.alfred-workflow-browser</string>
 	<key>category</key>
 	<string>Mine</string>
 	<key>connections</key>
