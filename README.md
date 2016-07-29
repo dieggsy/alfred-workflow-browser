@@ -1,4 +1,4 @@
-# WorkflowFileBrowser
+# alfred-workflow-browser
 An Alfred workflow to browse workflow files
 ## Usage:
 ### Workflow
