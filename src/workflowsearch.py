@@ -1,15 +1,16 @@
 '''workflowsearch.py (path) [options]
 
 Usage:
-    workflowsearch.py <query> (-c|-b|-r|-a|-w) [<keyword>] [--pardir=<pardir>]
+    workflowsearch.py <query> (-c|-b|-r|-a|-w) [<keyword>] [--pardir=<dirpath>]
 
 Options:
-    -c        Filter by category
-    -b        Filter by bundleid
-    -r        Filter by readme
-    -a        Filter by createdby
-    -w        Show all
-    --pardir  Workflow directory (optional)
+    -c  Filter by category
+    -b  Filter by bundleid
+    -r  Filter by readme
+    -a  Filter by createdby
+    -w  Show all
+
+    --pardir=<dirpath>   Workflow directory (optional)
 '''
 from xml.sax.saxutils import unescape
 from workflow import Workflow3
@@ -47,17 +48,19 @@ def wfFilter(filename):
             return name,False
 
 def workflow_subdirectories():
-    if not arg.get('--pardir'):
+    args=docopt(__doc__)
+    if not args.get('--pardir'):
         a_dir=os.path.dirname(os.path.dirname(os.path.abspath('info.plist')))
     else:
-        a_dir = args.get('<pardir>')
+        a_dir = args.get('--pardir')
     my_workflows=[]
     for folder in os.listdir(a_dir):
         folderpath=os.path.join(a_dir,folder)
-        #if os.path.isdir(folderpath):
-        name,show=wfFilter(os.path.join(a_dir,folder,'info.plist'))
-        if show:
-            my_workflows.append((name,folderpath))
+        plistfile = os.path.join(a_dir,folder,'info.plist')
+        if os.path.isfile(plistfile):
+            name,show=wfFilter(plistfile)
+            if show:
+                my_workflows.append((name,folderpath))
     return my_workflows
 
 

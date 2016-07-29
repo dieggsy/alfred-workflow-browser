@@ -149,7 +149,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>python workflowsearch.py "$1" -a Diego\ A.\ Mundo</string>
+				<string>python workflowsearch.py "$1" -a Diego\ A.\ Mundo --pardir='/Users/diego/Library/Application Support/Alfred 3/Alfred.alfredpreferences/workflows/'</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -236,7 +236,7 @@ clear &amp;&amp; wfname</string>
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>python workflowsearch.py "{query}" -w</string>
+				<string>python workflowsearch.py "{query}" -w --pardir='/Users/diego/Library/Application Support/Alfred 3/Alfred.alfredpreferences/workflows/'</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
