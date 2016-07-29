@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (c) 2016 Diego A. Mundo <diegoamundo@gmail.com>
+#
+# MIT Licence. See http://opensource.org/licenses/MIT
+#
+# Created on 2016-07-28
+
 '''workflowsearch.py (path) [options]
 
 Usage:
