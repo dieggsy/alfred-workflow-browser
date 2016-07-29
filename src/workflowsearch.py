@@ -1,7 +1,7 @@
 '''workflowsearch.py (path) [options]
 
 Usage:
-    workflowsearch.py <query> (-c|-b|-r|-a) [<keyword>] [--pardir=<dirpath>]
+    workflowsearch.py <query> (-c|-b|-r|-a) <keyword> [--pardir=<dirpath>]
     workflowsearch.py <query> -w [--pardir=<dirpath>]
 
 Options:

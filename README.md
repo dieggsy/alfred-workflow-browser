@@ -17,7 +17,7 @@ Workflows can be searched by name, with regex search supported.
 ### Script
 Usage:
 
-    workflowsearch.py <query> (-c|-b|-r|-a) [<keyword>] [--pardir=<dirpath>]
+    workflowsearch.py <query> (-c|-b|-r|-a) <keyword> [--pardir=<dirpath>]
 	wokrflowsearch.py <query> -w [--pardir=<dirpath>]
 
 Options:
@@ -28,4 +28,4 @@ Options:
     -a  Filter by createdby
     -w  Show all
 
-	--pardir  Workflow directory (optional)
+	--pardir=<dirpath>  Workflow directory (optional)
