@@ -1,14 +1,15 @@
 '''workflowsearch.py (path) [options]
 
 Usage:
-    workflowsearch.py <query> (-c|-b|-r|-a|-w) [<keyword>]
+    workflowsearch.py <query> (-c|-b|-r|-a|-w) [<keyword>] [--pardir=<pardir>]
 
 Options:
-    -c    Filter by category
-    -b    Filter by bundleid
-    -r    Filter by readme
-    -a    Filter by createdby
-    -w    Show all
+    -c        Filter by category
+    -b        Filter by bundleid
+    -r        Filter by readme
+    -a        Filter by createdby
+    -w        Show all
+    --pardir  Workflow directory (optional)
 '''
 from xml.sax.saxutils import unescape
 from workflow import Workflow3
@@ -46,7 +47,10 @@ def wfFilter(filename):
             return name,False
 
 def workflow_subdirectories():
-    a_dir=os.path.dirname(os.path.dirname(os.path.abspath('info.plist')))
+    if not arg.get('--pardir'):
+        a_dir=os.path.dirname(os.path.dirname(os.path.abspath('info.plist')))
+    else:
+        a_dir = args.get('<pardir>')
     my_workflows=[]
     for folder in os.listdir(a_dir):
         folderpath=os.path.join(a_dir,folder)

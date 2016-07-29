@@ -21,8 +21,9 @@ Usage:
 
 Options:
 
-    -c    Filter by category
-    -b    Filter by bundleid
-    -r    Filter by readme (in progress, only currently works with line on top of readme)
-    -a    Filter by createdby
-    -w    Show all
+    -c        Filter by category
+    -b        Filter by bundleid
+    -r        Filter by readme (in progress, only currently works with line on top of readme)
+    -a        Filter by createdby
+    -w        Show all
+	--pardir  Workflow directory (optional)
