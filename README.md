@@ -35,3 +35,6 @@ Options:
 This workflow is released under the [MIT licence][mit].
 
 This workflow uses the [Alfred-Workflow][aw] library, which is also released under the [MIT licence][mit].
+
+[mit]: ./src/LICENCE.txt
+[aw]: http://www.deanishe.net/alfred-workflow/
