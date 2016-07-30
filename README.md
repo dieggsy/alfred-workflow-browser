@@ -29,3 +29,9 @@ Options:
 - `-w` — Show all
 
 - `--pardir=<dirpath>` — Workflow directory (optional)
+
+## Licencing, thanks ##
+
+This workflow is released under the [MIT licence][mit].
+
+This workflow uses the [Alfred-Workflow][aw] library, which is also released under the [MIT licence][mit].
